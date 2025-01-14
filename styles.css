@@ -15,10 +15,16 @@
 
 
 .display {
+    display: flex;
+    justify-content: flex-end;
     width: 350px;
     height: 100px;
     background-color: #DEBAC0;
     margin-top: 20px;
+}
+
+.bottom-display {
+    align-self: flex-end;
 }
 
 .big-btns {
@@ -52,5 +58,6 @@
     display: flex;
     width: 80px;
     height: 80px;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
 }
