@@ -23,10 +23,10 @@ function operate(a, b, operand) {
         case "-":
             result += subtract(a, b);
             break;
-        case "-":
+        case "×":
             result += multiply(a, b);
             break;
-        case "/":
+        case "÷":
             result += divide(a, b);   
     }
     return result;
@@ -35,6 +35,7 @@ function operate(a, b, operand) {
 let num1 = 0;
 let operand = "";
 let num2 = 0;
+let newArr = [];
 const numBtns = document.querySelectorAll(".num-btns");
 const opBtns = document.querySelectorAll(".op-btns");
 const bottomDisplay = document.querySelector(".bottom-display");
@@ -53,7 +54,17 @@ opBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         topCurrent += accumulate + event.target.textContent;
         topDisplay.textContent = topCurrent;
-        accumulate = "";
+        if (event.target.textContent === "=") {
+            newArr = topCurrent.split('');
+            num1 = parseInt(newArr[0]);
+            operand = newArr[1];
+            num2 = parseInt(newArr[2]);
+            accumulate = operate(num1, num2, operand);
+            bottomDisplay.textContent = accumulate;
+        } else {
+            accumulate = "";
+        }
+       
     })
 })
 
