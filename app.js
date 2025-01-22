@@ -54,17 +54,23 @@ opBtns.forEach((btn) => {
     btn.addEventListener("click", (event) => {
         topCurrent += accumulate + event.target.textContent;
         topDisplay.textContent = topCurrent;
-        if (event.target.textContent === "=") {
+        accumulate = "";
+        if (event.target.textContent === "=" && topCurrent.trim() !== "") {
             newArr = topCurrent.split(/([+\-×÷])/);
-            num1 = parseInt(newArr[0]);
+            num1 = parseFloat(newArr[0]);
             operand = newArr[1];
-            num2 = parseInt(newArr[2]);
-            accumulate = operate(num1, num2, operand);
-            bottomDisplay.textContent = accumulate;
+            num2 = parseFloat(newArr[2]);
+            if (num1 < 1 || num2 < 1) {
+                 alert("Dawg you can't divide by zero (>_<)");
+            } else {
+                accumulate = operate(num1, num2, operand);
+                bottomDisplay.textContent = accumulate;
+                topCurrent = "";
+            }    
         } else {
             accumulate = "";
-        }
-       
+        }    
     })
 })
 
+// figure out how to do nothing when the user clicks on an = button first
