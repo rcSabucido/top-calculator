@@ -55,7 +55,7 @@ opBtns.forEach((btn) => {
         topCurrent += accumulate + event.target.textContent;
         topDisplay.textContent = topCurrent;
         if (event.target.textContent === "=") {
-            newArr = topCurrent.split('');
+            newArr = topCurrent.split(/([+\-×÷])/);
             num1 = parseInt(newArr[0]);
             operand = newArr[1];
             num2 = parseInt(newArr[2]);
