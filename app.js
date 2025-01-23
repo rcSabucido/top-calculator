@@ -51,26 +51,31 @@ numBtns.forEach((btn) => {
 })
 
 opBtns.forEach((btn) => {
-    btn.addEventListener("click", (event) => {
-        topCurrent += accumulate + event.target.textContent;
-        topDisplay.textContent = topCurrent;
-        accumulate = "";
-        if (event.target.textContent === "=" && topCurrent.trim() !== "") {
-            newArr = topCurrent.split(/([+\-×÷])/);
-            num1 = parseFloat(newArr[0]);
-            operand = newArr[1];
-            num2 = parseFloat(newArr[2]);
-            if (num1 < 1 || num2 < 1) {
-                 alert("Dawg you can't divide by zero (>_<)");
+    btn.addEventListener("click", (event) => { 
+        const operator = event.target.textContent;
+        if (operator === "=") {
+            if (topCurrent.trim() !== "" && /[+\-×÷]/.test(topCurrent) && accumulate !== "") {
+                topCurrent += accumulate + operator;
+                newArr = topCurrent.split(/([+\-×÷])/);
+                num1 = parseFloat(newArr[0]);
+                operand = newArr[1];
+                num2 = parseFloat(newArr[2]);
+                if (num1 < 1 || num2 < 1) {
+                    alert("Dawg you can't divide by zero (>_<)");
+                } else {
+                    accumulate = operate(num1, num2, operand);
+                    bottomDisplay.textContent = accumulate;
+                    topDisplay.textContent = topCurrent;
+                    topCurrent = "";
+                }
             } else {
-                accumulate = operate(num1, num2, operand);
-                bottomDisplay.textContent = accumulate;
-                topCurrent = "";
-            }    
+                return;
+            }
         } else {
+            topCurrent += accumulate + operator;
+            topDisplay.textContent = topCurrent;
             accumulate = "";
-        }    
+        }
     })
 })
 
-// figure out how to do nothing when the user clicks on an = button first
