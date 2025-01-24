@@ -58,6 +58,7 @@ const bottomDisplay = document.querySelector(".bottom-display");
 const topDisplay = document.querySelector(".top-display");
 const clearBtn = document.querySelector(".clear-btn");
 const delBtn = document.querySelector(".delete-btn");
+const footer = document.querySelector(".footer");
 let accumulate = "";
 let topCurrent = "";
 
@@ -114,3 +115,6 @@ opBtns.forEach((btn) => {
 
 clearBtn.addEventListener("click", clear);
 delBtn.addEventListener("click", deleteLast);
+
+const currentYear = new Date().getFullYear();
+footer.textContent = `Copyright © ${currentYear} by BooPedro`;
